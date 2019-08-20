@@ -5,6 +5,8 @@ import Signup from './Components/signup'
 import Trip from './Components/Trip'
 import SavedTrips from './Components/SavedTrips'
 import Profile from './Components/userProfile'
+import TripDetails from './Components/TripDetails.jsx'
+import AppNotFound from './Components/AppNotFound'
 
 
 
@@ -32,23 +34,21 @@ render(){
     <Router>
     <div className = 'app'> 
           <div className = "nav">
-      <Link className = 'link' to='/'>Home</Link>
-      <Link className = 'link' to='/Signup'>SIGN UP (TEMP)</Link>
-      <Link className = 'link' to='/trip'>Plan A Trip</Link>
-      <Link className = 'link' to='/SavedTrips'>Your Trips</Link>
-      <Link className = 'link' to='/profile'>Profile</Link>
-    </div>
+            <Link className = 'link' to='/'>Home</Link>
+            <Link className = 'link' to='/signup'>SIGN UP (TEMP)</Link>
+            <Link className = 'link' to='/trip'>Plan A Trip</Link>
+            <Link className = 'link' to='/savedTrips'>Your Trips</Link>
+            <Link className = 'link' to='/profile'>Profile</Link>
+            <Link className = 'link' to='/tripDetails'>Trip Details</Link>
+         </div>
 
-
-
-
-
- 
     <Switch>
-      <Route path='/Signup' exact component ={Signup}/>
+      <Route path='/signup' exact component ={Signup}/>
       <Route path='/trip' component ={Trip}/>
       <Route path='/savedTrips' component ={SavedTrips}/>
       <Route path='/profile' component ={Profile}/>
+      <Route path='/tripDetails' component ={TripDetails}/>}
+      <Route component={AppNotFound}/>
     </Switch>
    
     </div>
