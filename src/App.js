@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
+import Signup from './Components/signup'
+import Trip from './Components/Trip'
+import SavedTrips from './Components/SavedTrips'
+import Profile from './Components/userProfile'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+export default class App extends Component{
+  constructor(){
+    super()
+    this.state ={
+
+    }
+  }
+// THIS IS THE GET
+//   componentDidMount(){
+//     fetch('localhost:3000/users')
+//     .then(response => response.json())
+// // THIS NEEDS TO BE CHANGED!!!
+//     .then(data => this.setState({users: data}))
+    
+//   }
+
+  
+
+
+render(){
+  return(
+    <Router>
+    <div className = 'app'> 
+          <div className = "nav">
+      <Link className = 'link' to='/'>Home</Link>
+      <Link className = 'link' to='/Signup'>SIGN UP (TEMP)</Link>
+      <Link className = 'link' to='/trip'>Plan A Trip</Link>
+      <Link className = 'link' to='/SavedTrips'>Your Trips</Link>
+      <Link className = 'link' to='/profile'>Profile</Link>
     </div>
-  );
-}
 
-export default App;
+
+
+
+
+ 
+    <Switch>
+      <Route path='/Signup' exact component ={Signup}/>
+      <Route path='/trip' component ={Trip}/>
+      <Route path='/savedTrips' component ={SavedTrips}/>
+      <Route path='/profile' component ={Profile}/>
+    </Switch>
+   
+    </div>
+    </Router>
+  
+    )
+  }
+}
