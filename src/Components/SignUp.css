@@ -1,5 +1,6 @@
 .BackGroundImage {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     height: 900px;
     background-position:center;

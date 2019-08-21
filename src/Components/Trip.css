@@ -1,13 +1,4 @@
-.GoogleMaps{
-    display: flex;
-    justify-content: center;
-    margin-left: 10%;
-    margin-top:30%;
-    height: 300px;
-    border: 2px;
-    border-color: black;
-
-  }
+/* 
 
   .BackGroundImageMap{
     display: flex;
@@ -17,4 +8,4 @@
     background-size:100%;
     background-repeat: no-repeat;
     background-color: rgba(0, 0, 0, 4.8);
-  }
+  } */
