@@ -1,9 +1,16 @@
 import React, { Component } from "react"
+import './Tripdetails.css'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+// const API_KEY = process.env.REACT_APP_APIKey;
+
 
 const WindowSize = {
-    width: '70%',
-    height: '70%'
+    width: '90%',
+    height: '70%',
+    margin: "auto",
+    borderRadius: "1.5rem",
+    alignSelf: 'center',
+    border: "solid grey 2px"
   };
 
 
@@ -41,15 +48,17 @@ createMarker = () =>{
              lat: this.props.lat,
              lng: this.props.long
             }}
-            className = 'GoogleMaps'
+            initialCenter={{lat: 39.7689, 
+                            lng: -104.9742
+            }}
+            className = 'maps'
           > 
           <Marker position={{lat:this.props.lat, lng: this.props.long}} />
-          {/* {this.createMarker()} */}
           </Map>
         )
     }
 
 }
 export default GoogleApiWrapper({
-    apiKey:'AIzaSyDl5qefR-U20uyuwSrDBAi3xHPY8qErDUs'
+    apiKey:process.env.REACT_APP_APIKey
 })(MapWindow);

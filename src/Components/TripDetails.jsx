@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Tripdetails.css'
+import '../App.css'
 import mountainBackgound from './Images/background.jpg'
 import MapWindow from './Map'
 import { GoogleApiWrapper } from 'google-maps-react';
@@ -7,11 +7,7 @@ import PlacesAutocomplete, {
     geocodeByAddress,
     getLatLng,
   } from 'react-places-autocomplete';
-
-// const mapStyles = {
-//     width: '70%',
-//     height: '70%'
-//   };
+   //const API_KEY = process.env.REACT_APP_APIKey;
 
 export class TripDetails extends Component{
     constructor(){
@@ -36,24 +32,47 @@ export class TripDetails extends Component{
               lat: latLng.lat,
               long: latLng.lng,
           }))
-          .then(result => console.log('Success', this.state))
+          .then(result => console.log('Success', result))
           .catch(error => console.error('Error', error));
       };
 
+      createUser = (event) =>{
+        event.preventDefault()
+        console.log('I was CLICKED', this.state)
+        fetch(`http://localhost:3000/location`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            country: '',
+            city: this.state.lastName.toLowerCase(),
+            locName: this.state.email.toLowerCase(),
+            lat: this.state.lat,
+            long: this.state.long,
+            notes: '',
+            tripid: ''
+          })
+        })
+      }
+
+
     render(){
         console.log("state check", this.state.lat)
+       
         return (
         <div className = 'BackGroundImageMap' style = {{ backgroundImage: "url("+mountainBackgound+")"}}>
             <form className = 'planner'>
-              
-              <h2 > Please fill out the fields below:</h2> 
+            
                   <PlacesAutocomplete
+                        id = "googlePlaces"
                         value={this.state.address}
                         onChange={this.handleChange}
                         onSelect={this.handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
+          <div className = 'googlePlaces'>
             <input
               {...getInputProps({
                 placeholder: 'Search Places ...',
@@ -66,10 +85,9 @@ export class TripDetails extends Component{
                 const className = suggestion.active
                   ? 'suggestion-item--active'
                   : 'suggestion-item';
-                // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                  ? { backgroundColor: '#f2f2f2', cursor: 'pointer' }
+                  : { backgroundColor: '#f2f2f2', cursor: 'pointer' };
                 return (
                   <div
                     {...getSuggestionItemProps(suggestion, {
@@ -87,11 +105,8 @@ export class TripDetails extends Component{
       </PlacesAutocomplete>
       <input className = 'field' type='text'email='email'placeholder = 'Notes' value = {this.state.email} onChange = {this.handleEmailChange}></input>
       <input className = 'field' type = 'submit' value = 'Start Planning!' onClick= {this.handleClick2} ></input>
-
-              
           </form>
-          
-              < MapWindow className = 'GoogleMaps2' lat = {this.state.lat} long = {this.state.long}/>
+              < MapWindow className = 'map' lat = {this.state.lat} long = {this.state.long}/>
       </div>
     
          )
@@ -99,7 +114,8 @@ export class TripDetails extends Component{
     }
     
     export default GoogleApiWrapper({
-        apiKey:'AIzaSyDl5qefR-U20uyuwSrDBAi3xHPY8qErDUs'
+        apiKey:process.env.REACT_APP_APIKey
+   
     })(TripDetails);
 
         

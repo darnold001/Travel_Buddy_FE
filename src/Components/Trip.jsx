@@ -9,7 +9,7 @@ export default class Trip extends Component {
   constructor(){
     super()
     this.state ={
-      Users :[],
+      userID: "",
       TripNamed: false
     }
   }
@@ -19,8 +19,21 @@ export default class Trip extends Component {
     .then(response => response.json())
     // .then(data =>this.setState({
     //   data:[data]}))
-      .then(response =>console.log(response))
+      .then(this.findUser())
   }
+
+  findUser = (response) =>{
+    // {username === response.username? 
+    //   this.setState({
+    //     userID: response.id, 
+    //     TripNamed: true
+    //   })
+    //   : null
+    // }
+
+    console.log(response)
+  }
+
 
   handleClick=(event)=>{
     event.preventDefault()
