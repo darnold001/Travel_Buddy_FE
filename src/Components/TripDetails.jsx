@@ -3,11 +3,12 @@ import '../App.css'
 import mountainBackgound from './Images/background.jpg'
 import MapWindow from './Map'
 import { GoogleApiWrapper } from 'google-maps-react';
+import SavedLocations from './SavedLocations'
 import PlacesAutocomplete, {
     geocodeByAddress,
     getLatLng,
   } from 'react-places-autocomplete';
-   //const API_KEY = process.env.REACT_APP_APIKey;
+
 
 export class TripDetails extends Component{
     constructor(){
@@ -17,9 +18,9 @@ export class TripDetails extends Component{
             long: "",
             City: "",
             State: "",
-            Notes: "",
-            selection: ""
-
+            notes: "",
+            selection: "",
+            trips: []
         }
     }
     //DO NOT DELETE BELOW!!!
@@ -39,7 +40,6 @@ export class TripDetails extends Component{
       };
 
       createPost = (event) =>{
-        console.log('I was CLICKED', this.props)
         fetch(`http://localhost:3000/locations`, {
           method: 'POST',
           headers: {
@@ -50,18 +50,35 @@ export class TripDetails extends Component{
             locName: this.state.selection,
             lat: this.state.lat,
             long: this.state.long,
-            notes: this.state.Notes,
+            notes: this.state.notes,
             city: "",
             country: "",
             trip_id: this.props.tripID
           })
         })
+        .then(response => response.json())
+        .then(this.tripsProp)
       }
-searchHandler = (event) =>{
-    this.setState({
-        selection: event.target.innerText
+
+  tripCards = () => {
+    return this.state.trips.map(trip => {
+      console.log(trip)
+      return <SavedLocations trip={trip} />
     })
-    console.log('tttesst',this.state)
+  }    
+  
+
+  tripsProp = (response) =>{
+    this.setState({
+      trips: [...this.state.trips, response]
+    })
+  }
+
+searchHandler = (event) =>{
+  this.setState({
+    selection: event.target.innerText
+  })
+  
 }
 handleSubmit = (event) =>{
     event.preventDefault()
@@ -73,10 +90,11 @@ handleNotesChange = (event) =>{
   }
 
     render(){
-        console.log("state check", this.state.lat)
        
         return (
         <div className = 'BackGroundImageMap' style = {{ backgroundImage: "url("+mountainBackgound+")"}}>
+          <div className = 'generalCardContainer'>{this.tripCards()}</div>
+                
             <form className = 'planner'>
             
                   <PlacesAutocomplete
@@ -117,11 +135,12 @@ handleNotesChange = (event) =>{
           </div>
         )}
       </PlacesAutocomplete>
-      <input className = 'field' type='text'email='email'placeholder = 'Notes' value = {this.state.email} onChange = {this.handleNotesChange}></input>
+      <input className = 'notes' type='text' notes='notes'placeholder = 'Notes' value = {this.state.notes} onChange = {this.handleNotesChange}></input><br></br>
       <input className = 'field' type = 'submit' value = 'Start Planning!' onClick= {this.handleSubmit} ></input>
           </form>
               < MapWindow className = 'map' lat = {this.state.lat} long = {this.state.long}/>
       </div>
+      
     
          )
        }

@@ -32,6 +32,7 @@ export default class signup extends Component{
         })
         .then(response =>response.json())
         .then(response =>{this.props.setTopUserId(response.id)})
+        //.then(response =>{this.props.setUserObject(response)})
       }
 
       handleFnameChange = (event) =>{
@@ -48,11 +49,15 @@ export default class signup extends Component{
         this.createUser(event)
         this.props.setUsername(this.state.email)
         this.setState({userCreated: true})
+        this.props.setUserInfo(
+            this.state.firstName,
+            this.state.lastName,
+            this.state.email
+        )
       }
     render(){
         return(
             <div className = 'BackGroundImageMap' style = {{ backgroundImage: "url("+mountainBackgound+")"}}>
-                <h1 className = 'title'>The Trip Buddy</h1>
                 <form className = 'signup'>
                     <label className = 'title'>
                     <h2 > Sign Up to Get Started!</h2> 

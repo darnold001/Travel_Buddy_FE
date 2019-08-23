@@ -34,9 +34,9 @@ createMarker = () =>{
     
 
     render(){
-        console.log('Lat',this.props.lat)
-        console.log('Long',this.props.long)
-        console.log('props',this.props)
+        // console.log('Lat',this.props.lat)
+        // console.log('Long',this.props.long)
+        // console.log('props',this.props)
 
         return(
 
