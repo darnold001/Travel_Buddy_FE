@@ -85,6 +85,7 @@ width: 25%;
 .cardContainer{
   text-align: center;
   color: rgb(72, 67, 67);
+  border-color: black;
   border-radius: 1px;
   margin: 3%;
 }
@@ -93,6 +94,7 @@ width: 25%;
 display: grid;
 margin: auto;
 color: darkgray;
+border-color: black;
 }
 
 .googlePlaces{

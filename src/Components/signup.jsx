@@ -58,6 +58,7 @@ export default class signup extends Component{
     render(){
         return(
             <div className = 'BackGroundImageMap' style = {{ backgroundImage: "url("+mountainBackgound+")"}}>
+              
                 <form className = 'signup'>
                     <label className = 'title'>
                     <h2 > Sign Up to Get Started!</h2> 
