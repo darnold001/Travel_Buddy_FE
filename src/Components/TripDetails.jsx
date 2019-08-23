@@ -63,9 +63,31 @@ export class TripDetails extends Component{
   tripCards = () => {
     return this.state.trips.map(trip => {
       console.log(trip)
-      return <SavedLocations trip={trip} />
+      return <SavedLocations delete={this.delete} zoomTo ={this.zoomTo} trip={trip} />
     })
   }    
+
+  delete = (tripID) =>{
+    fetch(`http://localhost:3000/locations/${tripID}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+      })
+     const updatedTrips =  this.state.trips.filter(trip =>trip.id !==tripID)
+     this.setState({
+       trips:updatedTrips
+     })
+  }
+
+  zoomTo = (lat, long)=>{
+    console.log(lat, long)
+    this.setState({
+      lat: lat,
+      long: long,
+    })
+  }
   
 
   tripsProp = (response) =>{
