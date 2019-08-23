@@ -7,6 +7,7 @@ import SavedLocations from './Components/SavedLocations'
 import Profile from './Components/userProfile'
 import TripDetails from './Components/TripDetails.jsx'
 import AppNotFound from './Components/AppNotFound'
+// import plane from './Components/Images/airplane_2708.png'
 
 
 
@@ -58,6 +59,7 @@ render(){
     <div className = 'app'> 
           <div className = "nav">
             {/* <Link className = 'link' to='/'>SIGN UP</Link> */}
+            <h2 className = 'title'><i class="far fa-paper-plane"></i>    Trip Buddy</h2>
             <Link className = 'link' to='/trip'>Plan a Trip</Link>
             <Link className = 'link' to='/tripDetails'>Current Trip Details</Link>
             <Link className = 'link-p' to='/profile'>Profile</Link>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import mountainBackgound from './Images/background.jpg'
 import './Trip.css'
+import {withRouter} from 'react-router-dom'
+
 
 
 
@@ -46,6 +48,7 @@ export default class Trip extends Component {
     event.preventDefault()
     this.setState({ TripNamed: true })
     this.createPostRequest(event)
+    this.props.history.push('/tripDetails')
   }
 
  

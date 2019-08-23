@@ -4,14 +4,14 @@
 
 .nav{
   color: aliceblue;
-  padding: 1.5%;
+  padding: 0.5%;
   background-color: rgb(160, 155, 155);
 }
 
 .link{
   color: aliceblue;
   font-weight:bold;
-  padding-left: 10px;
+  padding-left: 15px;
 }
 .link-p{
   color: aliceblue;
@@ -62,6 +62,7 @@ padding-top: 6%;
 }
 .title{
   text-align: center;
+  font-size: 40px;
 }
 
 .title2{

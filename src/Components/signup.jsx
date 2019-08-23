@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import mountainBackgound from './Images/background.jpg'
 import '../App.css'
+import {withRouter} from 'react-router-dom'
 
 export default class signup extends Component{
     constructor(){
@@ -54,6 +55,7 @@ export default class signup extends Component{
             this.state.lastName,
             this.state.email
         )
+        this.props.history.push('/trip')
       }
     render(){
         return(
