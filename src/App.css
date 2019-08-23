@@ -5,10 +5,12 @@
 .nav{
   color: aliceblue;
   padding: 2%;
-  background-color: grey;
+  background-color: rgb(160, 155, 155);
 }
 
 .link{
+  color: aliceblue;
+  font-weight:bold;
   padding-left: 10px;
 }
 
@@ -46,6 +48,16 @@ padding-top: 6%;
 
 }
 .TripName{
-  display: flex;
-  align-content: center;
+  text-align: center;
+}
+.signup{
+  padding-top: 20%;
+  text-align: center;
+}
+.title{
+  text-align: center;
+}
+.field{
+  margin: 4px;
+  height: 18px;
 }

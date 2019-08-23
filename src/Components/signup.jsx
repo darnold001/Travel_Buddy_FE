@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import mountainBackgound from './Images/background.jpg'
-import './SignUp.css'
+import '../App.css'
 
 export default class signup extends Component{
     constructor(){
@@ -12,6 +12,7 @@ export default class signup extends Component{
             userCreated: false
         }
     }
+
 
     createUser = (event) =>{
         event.preventDefault()
@@ -29,6 +30,8 @@ export default class signup extends Component{
             password: 'null'
           })
         })
+        .then(response =>response.json())
+        .then(response =>{this.props.setTopUserId(response.id)})
       }
 
       handleFnameChange = (event) =>{
@@ -40,15 +43,15 @@ export default class signup extends Component{
       handleEmailChange = (event) =>{
         this.setState({email: event.target.value});
       }
-
+      
       handleClick =(event)=>{
         this.createUser(event)
+        this.props.setUsername(this.state.email)
         this.setState({userCreated: true})
-
       }
     render(){
         return(
-            <div className = 'BackGroundImage' style = {{ backgroundImage: "url("+mountainBackgound+")"}}>
+            <div className = 'BackGroundImageMap' style = {{ backgroundImage: "url("+mountainBackgound+")"}}>
                 <h1 className = 'title'>The Trip Buddy</h1>
                 <form className = 'signup'>
                     <label className = 'title'>

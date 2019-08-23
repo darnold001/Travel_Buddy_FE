@@ -17,10 +17,12 @@ export class TripDetails extends Component{
             long: "",
             City: "",
             State: "",
-            Notes: ""
+            Notes: "",
+            selection: ""
 
         }
     }
+    //DO NOT DELETE BELOW!!!
     handleChange = address => {
         this.setState({ address });
       };
@@ -36,27 +38,39 @@ export class TripDetails extends Component{
           .catch(error => console.error('Error', error));
       };
 
-      createUser = (event) =>{
-        event.preventDefault()
-        console.log('I was CLICKED', this.state)
-        fetch(`http://localhost:3000/location`, {
+      createPost = (event) =>{
+        console.log('I was CLICKED', this.props)
+        fetch(`http://localhost:3000/locations`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            country: '',
-            city: this.state.lastName.toLowerCase(),
-            locName: this.state.email.toLowerCase(),
+            locName: this.state.selection,
             lat: this.state.lat,
             long: this.state.long,
-            notes: '',
-            tripid: ''
+            notes: this.state.Notes,
+            city: "",
+            country: "",
+            trip_id: this.props.tripID
           })
         })
       }
+searchHandler = (event) =>{
+    this.setState({
+        selection: event.target.innerText
+    })
+    console.log('tttesst',this.state)
+}
+handleSubmit = (event) =>{
+    event.preventDefault()
+    this.createPost()
+}
 
+handleNotesChange = (event) =>{
+    this.setState({notes: event.target.value});
+  }
 
     render(){
         console.log("state check", this.state.lat)
@@ -95,7 +109,7 @@ export class TripDetails extends Component{
                       style,
                     })}
                   >
-                    <span>{suggestion.description}</span>
+                    <span onClick= {this.searchHandler}>{suggestion.description}</span>
                   </div>
                 );
               })}
@@ -103,8 +117,8 @@ export class TripDetails extends Component{
           </div>
         )}
       </PlacesAutocomplete>
-      <input className = 'field' type='text'email='email'placeholder = 'Notes' value = {this.state.email} onChange = {this.handleEmailChange}></input>
-      <input className = 'field' type = 'submit' value = 'Start Planning!' onClick= {this.handleClick2} ></input>
+      <input className = 'field' type='text'email='email'placeholder = 'Notes' value = {this.state.email} onChange = {this.handleNotesChange}></input>
+      <input className = 'field' type = 'submit' value = 'Start Planning!' onClick= {this.handleSubmit} ></input>
           </form>
               < MapWindow className = 'map' lat = {this.state.lat} long = {this.state.long}/>
       </div>
@@ -115,7 +129,6 @@ export class TripDetails extends Component{
     
     export default GoogleApiWrapper({
         apiKey:process.env.REACT_APP_APIKey
-   
     })(TripDetails);
 
         
