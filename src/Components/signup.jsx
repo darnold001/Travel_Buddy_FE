@@ -18,7 +18,7 @@ export default class signup extends Component{
     createUser = (event) =>{
         event.preventDefault()
         console.log('I was CLICKED', this.state)
-        fetch(`http://localhost:3000/users`, {
+        fetch(`http://enigmatic-eyrie-69218.herokuapp.com/users`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -62,7 +62,7 @@ export default class signup extends Component{
             <div className = 'BackGroundImageMap' style = {{ backgroundImage: "url("+mountainBackgound+")"}}>
               
                 <form className = 'signup'>
-                    <label className = 'title'>
+                    <label className = 'title2'>
                     <h2 > Sign Up to Get Started!</h2> 
                         <input className = 'field' type='text'name='f_name' placeholder = 'First Name' value = {this.state.firstName} onChange={this.handleFnameChange}></input>
                         <input className = 'field' type='text'name='l_name'placeholder = 'Last Name' value = {this.state.lastName} onChange={this.handleLnameChange}></input>

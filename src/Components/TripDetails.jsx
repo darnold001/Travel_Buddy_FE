@@ -40,7 +40,7 @@ export class TripDetails extends Component{
       };
 
       createPost = (event) =>{
-        fetch(`http://localhost:3000/locations`, {
+        fetch(`http://enigmatic-eyrie-69218.herokuapp.com/locations`, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -68,7 +68,7 @@ export class TripDetails extends Component{
   }    
 
   delete = (tripID) =>{
-    fetch(`http://localhost:3000/locations/${tripID}`, {
+    fetch(`http://enigmatic-eyrie-69218.herokuapp.com/locations/${tripID}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',

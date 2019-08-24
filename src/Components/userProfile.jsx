@@ -31,7 +31,7 @@ export default class UserProfile extends Component{
 
 
     createUpdateRequest = (event) =>{
-        fetch(`http://localhost:3000/users/${this.props.userID}`, {
+        fetch(`http://enigmatic-eyrie-69218.herokuapp.com/users/${this.props.userID}`, {
           method: 'PATCH',
           headers: {
             'Accept': 'application/json',

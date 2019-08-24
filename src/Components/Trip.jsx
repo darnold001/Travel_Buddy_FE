@@ -22,7 +22,7 @@ export default class Trip extends Component {
 }
 
   createPostRequest = () =>{
-    fetch(`http://localhost:3000/trips`,{
+    fetch(`http://enigmatic-eyrie-69218.herokuapp.com/trips`,{
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -57,7 +57,7 @@ export default class Trip extends Component {
      
       <div className = 'BackGroundImageMap' style = {{ backgroundImage: "url("+mountainBackgound+")"}}>
      <form className = 'TripName' onSubmit = {this.handleClick}>
-       <label className = 'title'>
+       <label className = 'title2'>
        <h2 > What would you like to name your trip?</h2> 
            <input className = 'field' type='text'name='tripName' placeholder = 'ex. Japan 2019' value = {this.state.tripName} onChange={this.handleTripName}></input>
            <input className = 'field' type = 'submit' value = 'Start Planning!' ></input>
